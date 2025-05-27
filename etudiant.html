@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Espace Étudiant - NEOBRAIN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1f26;
+      color: #f1f5f9;
+    }
+
+    header {
+      background-color: #2c2f38;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 20px;
+      color: #f1f5f9;
+    }
+
+    .profile img {
+      height: 40px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+
+    .profile span {
+      font-size: 12px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 60px 20px;
+      justify-items: center;
+    }
+
+    .card {
+      background-color: #2f3541;
+      border-left: 6px solid #facc15;
+      padding: 25px 20px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 320px;
+      text-align: left;
+      color: #f1f5f9;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #facc15;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #d1d5db;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="premiere page.html">Home</a>
+      <a href="presentation.html">Presentation</a>
+      <a href="contacte.html">Contact</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+    </div>
+    <div class="profile">
+      <img src="profil.png" alt="Profil" />
+      <span>PROFIL</span>
+    </div>
+    <div class="title">NEOBRAIN</div>
+    <img src="logo.png" alt="Logo Neobrain" class="logo" />
+  </header>
+
+  <section class="main">
+    <a href="https://epfedu.sharepoint.com/sites/my_epf" target="_blank" class="card">
+      <h3>SharePoint EPF</h3>
+      <p>Accédez à vos documents partagés.</p>
+    </a>
+    <a href="https://moodle.epf.fr" target="_blank" class="card">
+      <h3>Moodle</h3>
+      <p>Retrouvez vos cours et supports pédagogiques.</p>
+    </a>
+    <a href="https://teams.microsoft.com" target="_blank" class="card">
+      <h3>Teams</h3>
+      <p>Participez à vos réunions et discussions.</p>
+    </a>
+    <a href="mescours.html" target="_blank" class="card">
+      <h3>Mes Cours</h3>
+      <p>Consultez vos contenus de cours personnels.</p>
+    </a>
+  </section>
+</body>
+</html>

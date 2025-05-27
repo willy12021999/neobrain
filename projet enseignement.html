@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neobrain - Éducation 4.0</title>
+  <style>
+    :root {
+      --primary-color: #d8c3a5; /* beige */
+      --accent-color: #4a4a4a; /* gris foncé */
+      --hover-color: #bfa789;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fdfdfb;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: var(--accent-color);
+    }
+
+    nav {
+      width: 200px;
+      background-color: var(--primary-color);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 100px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 15px 20px;
+      font-size: 16px;
+      color: var(--accent-color);
+      cursor: pointer;
+    }
+
+    nav button:hover,
+    nav a:hover {
+      background-color: var(--hover-color);
+    }
+
+    nav .submenu {
+      display: none;
+      flex-direction: column;
+      background-color: #eee9e0;
+    }
+
+    nav .submenu a {
+      padding: 10px 30px;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-size: 14px;
+    }
+
+    nav a.direct-link {
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      color: var(--accent-color);
+    }
+
+    main {
+      margin-left: 220px;
+      padding: 40px;
+    }
+
+    .button-container {
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      background-color: var(--accent-color);
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #2e2e2e;
+    }
+  </style>
+  <script>
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="/mnt/data/695c4699-ebdf-4cdc-a239-ac740387475f.png" alt="Logo Neobrain" />
+    <h1>Neobrain - Plateforme Éducative 4.0</h1>
+  </header>
+
+  <nav>
+    <button onclick="toggleSubmenu('menu1')">Accueil</button>
+    <div id="menu1" class="submenu">
+      <a href="#">Présentation</a>
+      <a href="#">Vision</a>
+    </div>
+
+    <button onclick="toggleSubmenu('menu2')">Cours</button>
+    <div id="menu2" class="submenu">
+      <a href="#">Programmation</a>
+      <a href="#">Design 3D</a>
+      <a href="#">IA & Données</a>
+    </div>
+
+    <button onclick="toggleSubmenu('menu3')">Ressources</button>
+    <div id="menu3" class="submenu">
+      <a href="#">Bibliothèque</a>
+      <a href="#">Support</a>
+    </div>
+
+    <a href="autre.html" class="direct-link">Notre site internet</a>
+  </nav>
+
+  <main>
+    <h2>Bienvenue sur la plateforme d’apprentissage Neobrain</h2>
+    <p>Découvrez un environnement numérique centré sur l’humain, conçu pour l’enseignement de demain.</p>
+
+    <div class="button-container">
+      <a href="https://epf.sharepoint.com" class="btn" target="_blank">Connexion SharePoint EPF</a>
+      <a href="https://moodle.epf.fr" class="btn" target="_blank">Accéder à Moodle</a>
+    </div>
+  </main>
+</body>
+</html>

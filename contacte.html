@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacte - NEOBRAIN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1f26;
+      color: #f1f5f9;
+    }
+
+    header {
+      background-color: #2c2f38;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 20px;
+      color: #f1f5f9;
+    }
+
+    .profile img {
+      height: 40px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+
+    .profile span {
+      font-size: 12px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: #2f3541;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    main h2 {
+      color: #facc15;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    main p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #e2e8f0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #434957;
+      color: #f1f5f9;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #facc15;
+      color: #1e1f26;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #eab308;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="premiere page.html">Home</a>
+      <a href="presentation.html">Presentation</a>
+      <a href="contacte.html">Contacte</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+    </div>
+    <div class="profile">
+      <img src="profil.png" alt="Profil" />
+      <span>PROFIL</span>
+    </div>
+    <div class="title">NEOBRAIN</div>
+    <img src="logo.png" alt="Logo Neobrain" class="logo">
+  </header>
+
+  <main>
+    <h2>Formulaire de Contact</h2>
+    <p>Si vous avez des problèmes avec le site, des suggestions d’amélioration ou des questions sur son fonctionnement, vous pouvez nous laisser un message. Veuillez renseigner votre nom, votre adresse mail, et rédiger votre message. Celui-ci sera envoyé à notre boîte mail.</p>
+
+    <form action="https://formsubmit.co/willy12021999@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="merci.html">
+
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="Nom" required>
+
+      <label for="email">Adresse e-mail</label>
+      <input type="email" id="email" name="Email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="Message" rows="6" required></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+  </main>
+</body>
+</html>
+
