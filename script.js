@@ -66,6 +66,7 @@ function afficherReservationsUtilisateur() {
                 } else {
                     reservations.splice(i, 1);
                 }
+                setCookie("reservations", JSON.stringify(reservations), 300);
             }
             userReservations.splice(index, 1);
             setCookie("userReservations", JSON.stringify(userReservations), 300);
@@ -126,12 +127,21 @@ function setCookie(cname, cvalue, exdays)
     d.setTime(d.getTime() + (exdays)*24*60*60*1000);
     let expire = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expire + ";path=/";
-    console.log(cname + "=" + cvalue + ";" + expire + ";path=/");
 }
 
 
 const userReservations = JSON.parse(getCookie("userReservations"));
 afficherReservationsUtilisateur();
+
+const reservationsCookie = JSON.parse(getCookie("reservations"));
+if (reservationsCookie != [])
+{
+    reservations = reservationsCookie;
+}
+else
+{
+    setCookie("reservations", JSON.stringify(reservations), 300);
+}
 
 remplirHeures("heureDebut");
 remplirHeures("heureFin");
@@ -182,6 +192,7 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
                         existante.personnes++;
                     } else {
                         reservations.push({ salle: salle.nom, date, debut, fin, acceptees: accepteAutres, personnes: 1 });
+                        setCookie("reservations", JSON.stringify(reservations), 300);
                     }
 
                     userReservations.push({ salle: salle.nom, date, debut, fin });
