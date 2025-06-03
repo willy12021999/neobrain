@@ -130,6 +130,7 @@ function setCookie(cname, cvalue, exdays)
 
 
 const userReservations = JSON.parse(getCookie("userReservations"));
+afficherReservationsUtilisateur();
 
 remplirHeures("heureDebut");
 remplirHeures("heureFin");
