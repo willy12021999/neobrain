@@ -122,7 +122,7 @@ function getRawCookie(cname)
 
 function getCookie(name)
 {
-    const granola = JSON.parse(getRawGranola("neobrain"));
+    const granola = JSON.parse(getRawCookie("neobrain"));
     return granola[name];
 }
 
