@@ -23,7 +23,7 @@ const reservations = [
     { salle: "A101", date: "2025-06-04", debut: "08:00", fin: "19:00", acceptees: false , personnes: 1 },
 ];
 
-const userReservations = [];
+
 
 function estDisponible(salle, date, debut, fin, accepteAutres) {
     return reservations.every(r => {
@@ -129,8 +129,8 @@ function setCookie(cname, cvalue, exdays)
 }
 
 
+const userReservations = JSON.parse(getCookie("userReservations"));
 
-console.log(document.cookie);
 remplirHeures("heureDebut");
 remplirHeures("heureFin");
 
