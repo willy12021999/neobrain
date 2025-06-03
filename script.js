@@ -68,7 +68,7 @@ function afficherReservationsUtilisateur() {
                 }
             }
             userReservations.splice(index, 1);
-            setCookie("userReservations", JSON.stringify(userReservations), 300);
+            setCookie("userReservations", userReservations);
             afficherReservationsUtilisateur();
             document.getElementById("filter-form").dispatchEvent(new Event("submit"));
         });
@@ -100,7 +100,7 @@ function validerFormulaire(date, debut, fin) {
 }
 
 // Lire un cookie stocké sur le navigateur de l'utilisateur
-function getCookie(cname)
+function getRawCookie(cname)
 {
     let name = cname + "=";
     let decodeCookie = decodeURIComponent(document.cookie);
@@ -120,17 +120,29 @@ function getCookie(cname)
     return "";
 }
 
-function setCookie(cname, cvalue, exdays)
+function getCookie(name)
+{
+    const granola = JSON.parse(getRawGranola("neobrain"));
+    return granola[name];
+}
+
+function setRawCookie(cname, cvalue, exdays)
 {
     const d = new Date();
     d.setTime(d.getTime() + (exdays)*24*60*60*1000);
     let expire = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expire + ";path=/";
-    console.log(cname + "=" + cvalue + ";" + expire + ";path=/");
+}
+
+function setCookie(name, value)
+{
+    const granola = JSON.parse(getRawCookie("neobrain"));
+    granola[name] = value;
+    setRawCookie("neobrain", JSON.stringify(granola), 300);
 }
 
 
-const userReservations = JSON.parse(getCookie("userReservations"));
+const userReservations = getCookie("userReservations");
 afficherReservationsUtilisateur();
 
 remplirHeures("heureDebut");
@@ -185,7 +197,7 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
                     }
 
                     userReservations.push({ salle: salle.nom, date, debut, fin });
-                    setCookie("userReservations", JSON.stringify(userReservations), 300);
+                    setCookie("userReservations", userReservations);
                     afficherReservationsUtilisateur();
                     document.getElementById("filter-form").dispatchEvent(new Event("submit"));
                 });
