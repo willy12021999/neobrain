@@ -133,11 +133,14 @@ function setCookie(cname, cvalue, exdays)
 const userReservations = JSON.parse(getCookie("userReservations"));
 afficherReservationsUtilisateur();
 
-const reservations = JSON.parse(getCookie("reservations"));
-if (reservations == [])
+const reservationsCookie = JSON.parse(getCookie("reservations"));
+if (reservationsCookie == [])
 {
-    reservations = reservationsDefault;
+    const reservations = reservationsDefault;
     setCookie("reservations", JSON.stringify(reservations), 300);
+}
+else{
+    const reservations = reservationsCookie;
 }
 
 remplirHeures("heureDebut");
