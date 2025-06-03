@@ -68,7 +68,6 @@ function afficherReservationsUtilisateur() {
                 }
             }
             userReservations.splice(index, 1);
-            setCookie("userReservations", userReservations);
             setCookie("userReservations", JSON.stringify(userReservations), 300);
             afficherReservationsUtilisateur();
             document.getElementById("filter-form").dispatchEvent(new Event("submit"));
@@ -101,7 +100,6 @@ function validerFormulaire(date, debut, fin) {
 }
 
 // Lire un cookie stocké sur le navigateur de l'utilisateur
-function getRawCookie(cname)
 function getCookie(cname)
 {
     let name = cname + "=";
@@ -122,7 +120,6 @@ function getCookie(cname)
     return "[]";
 }
 
-function getCookie(name)
 function setCookie(cname, cvalue, exdays)
 {
     const d = new Date();
