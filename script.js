@@ -68,6 +68,7 @@ function afficherReservationsUtilisateur() {
                 }
             }
             userReservations.splice(index, 1);
+            setCookie("userReservations", JSON.stringify(userReservations), 300);
             afficherReservationsUtilisateur();
             document.getElementById("filter-form").dispatchEvent(new Event("submit"));
         });
