@@ -134,7 +134,7 @@ const userReservations = JSON.parse(getCookie("userReservations"));
 afficherReservationsUtilisateur();
 
 const reservationsCookie = JSON.parse(getCookie("reservations"));
-if (reservationsCookie == [])
+if (reservationsCookie.length == 0)
 {
     setCookie("reservations", JSON.stringify(reservations), 300);
 }
