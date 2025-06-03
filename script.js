@@ -4,7 +4,7 @@ const salles = [
     { nom: "B101", type: "TD" }, { nom: "B102", type: "TD" }, { nom: "P101", type: "TD" }, { nom: "P102", type: "TD" },
     { nom: "B201", type: "Salle de projet" }, { nom: "B202", type: "Salle de projet" }, { nom: "B203", type: "Salle de projet" },
     { nom: "P201", type: "Salle de projet" }, { nom: "P202", type: "Salle de projet" }, { nom: "P203", type: "Salle de projet" }, { nom: "A203", type: "Salle de projet" },
-    { nom: "P301", type: "TP" }, { nom: "T302", type: "TP" }
+    { nom: "P301", type: "TP" }, { nom: "P302", type: "TP" }, { nom: "P303", type: "TP" }
 ];
 
 const reservations = [
