@@ -1,0 +1,20 @@
+document.getElementById('reservation-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const date = document.getElementById('date').value;
+    const salle = "A" + document.getElementById('salle').value + " C";
+    const typeSalle = document.getElementById('typeSalle').value;
+    const heureDebut = document.getElementById('heureDebut').value;
+    const heureFin = document.getElementById('heureFin').value;
+    const but = document.getElementById('but').value;
+    const accepteAutres = document.getElementById('accepteAutres').checked ? "Oui" : "Non";
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.textContent = `${salle} | ${typeSalle} | ${date} | ${heureDebut} → ${heureFin} | ${but} | Autres: ${accepteAutres}`;
+
+    document.getElementById('reservations-list').appendChild(card);
+
+    // Réinitialise le formulaire
+    document.getElementById('reservation-form').reset();
+});

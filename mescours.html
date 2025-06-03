@@ -14,7 +14,7 @@
       --text-light: #f5f5f5;
       --accent: #7ea9f7;
       --border: #444;
-      --bubble-border: #facc15; /* jaune vif */
+      --bubble-border: #facc15; 
     }
 
     body {
@@ -81,7 +81,7 @@
     .sidebar {
       width: 160px;
       background-color: var(--bg-sidebar);
-      padding-top: 30px;
+      padding-top: 20px;
       height: calc(100vh - 80px);
       position: fixed;
       top: 80px;
@@ -169,13 +169,13 @@
     .card {
   text-decoration: none;
   color: inherit;
-    }
+}
   </style>
 </head>
 <body>
   <header>
     <div class="navbar">
-      <a href="premiere page.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="presentation.html">Présentation</a>
       <a href="contacte.html">Contact</a>
       <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
@@ -189,13 +189,16 @@
   </header>
 
   <div class="sidebar">
-    <div class="avatar"></div>
-    <a href="https://chat.openai.com" target="_blank">ChatBot</a>
-    <a href="https://epfedu.sharepoint.com/sites/my_epf" target="_blank">SharePoint</a>
+        <a href="https://epfedu.sharepoint.com/sites/my_epf" target="_blank">SharePoint</a>
     <a href="https://moodle.epf.fr" target="_blank">Moodle</a>
     <a href="https://teams.microsoft.com" target="_blank">Teams</a>
     <a href="https://outlook.office.com/" target="_blank">Mail</a>
     <a href="maprogression.html">Ma Progression</a>
+    <a href="https://univ.scholarvox.com/" target="_blank">ScholarVox</a>
+    <a href="https://epfedu.sharepoint.com/sites/AssociationIPN" target="_blank">AssociationIPN</a>
+    <a href="https://vapp.epf.fr/Citrix/storeWeb/" target="_blank">Citrix internet</a>
+    
+
   </div>
 
  <section class="main">
@@ -229,5 +232,9 @@
     <p>Accédez aux annales pour réviser efficacement vos examens.</p>
   </a>
 </section>
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="9xDDFIFNAuZzb6IrEOQlO";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
 </body>
 </html>
