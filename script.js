@@ -109,7 +109,7 @@ function getCookie(cname)
     for(let i = 0; i < ca.length; i++)
     {
         let c = ca[i];
-        while(c.charCodeAt(0) == ' ')
+        while(c.charAt(0) == ' ')
         {
             c = c.substring(1);
         }
