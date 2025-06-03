@@ -69,6 +69,7 @@ function afficherReservationsUtilisateur() {
             }
             userReservations.splice(index, 1);
             setCookie("userReservations", userReservations);
+            setCookie("userReservations", JSON.stringify(userReservations), 300);
             afficherReservationsUtilisateur();
             document.getElementById("filter-form").dispatchEvent(new Event("submit"));
         });
@@ -101,6 +102,7 @@ function validerFormulaire(date, debut, fin) {
 
 // Lire un cookie stocké sur le navigateur de l'utilisateur
 function getRawCookie(cname)
+function getCookie(cname)
 {
     let name = cname + "=";
     let decodeCookie = decodeURIComponent(document.cookie);
@@ -121,28 +123,17 @@ function getRawCookie(cname)
 }
 
 function getCookie(name)
-{
-    const granola = JSON.parse(getRawCookie("neobrain"));
-    return granola[name];
-}
-
-function setRawCookie(cname, cvalue, exdays)
+function setCookie(cname, cvalue, exdays)
 {
     const d = new Date();
     d.setTime(d.getTime() + (exdays)*24*60*60*1000);
     let expire = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expire + ";path=/";
-}
-
-function setCookie(name, value)
-{
-    const granola = JSON.parse(getRawCookie("neobrain"));
-    granola[name] = value;
-    setRawCookie("neobrain", JSON.stringify(granola), 300);
+    console.log(cname + "=" + cvalue + ";" + expire + ";path=/");
 }
 
 
-const userReservations = getCookie("userReservations");
+const userReservations = JSON.parse(getCookie("userReservations"));
 afficherReservationsUtilisateur();
 
 remplirHeures("heureDebut");
@@ -197,7 +188,7 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
                     }
 
                     userReservations.push({ salle: salle.nom, date, debut, fin });
-                    setCookie("userReservations", userReservations);
+                    setCookie("userReservations", JSON.stringify(userReservations), 300);
                     afficherReservationsUtilisateur();
                     document.getElementById("filter-form").dispatchEvent(new Event("submit"));
                 });
