@@ -7,7 +7,7 @@ const salles = [
     { nom: "P301", type: "TP" }, { nom: "P302", type: "TP" }, { nom: "P303", type: "TP" }
 ];
 
-const reservations = [
+const reservationsDefault = [
     { salle: "A101", date: "2025-06-03", debut: "10:00", fin: "12:00", acceptees: true, personnes: 2 },
     { salle: "B201", date: "2025-06-03", debut: "09:00", fin: "11:00", acceptees: false, personnes: 1 },
     { salle: "P302", date: "2025-06-03", debut: "08:00", fin: "10:00", acceptees: true, personnes: 3 },
@@ -133,13 +133,10 @@ function setCookie(cname, cvalue, exdays)
 const userReservations = JSON.parse(getCookie("userReservations"));
 afficherReservationsUtilisateur();
 
-const reservationsCookie = JSON.parse(getCookie("reservations"));
-if (reservationsCookie != [])
+const reservations = JSON.parse(getCookie("reservations"));
+if (reservations == [])
 {
-    reservations = reservationsCookie;
-}
-else
-{
+    reservations = reservationsDefault;
     setCookie("reservations", JSON.stringify(reservations), 300);
 }
 
