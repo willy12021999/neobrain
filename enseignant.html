@@ -1,33 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Espace Enseignant</title>
-    <link rel="stylesheet" href="style_enseignant.css">
+  <meta charset="UTF-8">
+  <title>Espace Enseignant - Neobrain</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .matiere-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 30px;
+    }
+    .matiere-buttons a {
+      background-color: var(--bg-card);
+      padding: 20px 30px;
+      border-radius: 16px;
+      color: var(--text-light);
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s, background-color 0.3s;
+      width: 250px;
+      text-decoration: none;
+    }
+    .matiere-buttons a:hover {
+      transform: translateY(-5px);
+      background-color: var(--hover-card);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Plateforme Enseignant</h1>
-        <nav>
-            <a href="index.html">Accueil</a>
-            <a href="etudiant.html">Espace Étudiant</a>
-            <a href="presentation.html">Presentation</a>
-            <a href="contacte.html">Contact</a>
-            <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
-            <a href="1dex.html" traget="_blank" >reservations d'une salle </a>
-            <a href="quiz_create.html">Créer un Quiz</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Liste des Matières</h2>
-        <ul>
-            <li>Mécanique</li>
-            <li>Thermodynamique</li>
-            <li>Électrotechnique</li>
-            <li>Mathématiques</li>
-            <li>Physique</li>
-        </ul>
-    </main>
+  <header>
+    <div class="navbar">
+      <img src="logo.png" alt="Logo" class="logo">
+      <span class="title">Neobrain</span>
+      <a href="index.html">Home</a>
+      <a href="presentation.html">Presentation</a>
+      <a href="contacte.html">Contact</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+      <a href="1dex.html" target="_blank">Reservations d'une salle</a>
+    </div>
+  </header>
+
+  <div class="welcome-banner">Bienvenue dans l'Espace Enseignant</div>
+  <p class="intro">Sélectionnez une matière ci-dessous pour accéder ou ajouter des contenus d'enseignement.</p>
+
+  <main class="matiere-buttons">
+    <a href="#">Mécanique</a>
+    <a href="#">Thermodynamique</a>
+    <a href="#">Électrotechnique</a>
+    <a href="#">Mathématiques</a>
+    <a href="#">Physique</a>
+    <a href="quiz_create.html">Créer un Quiz</a>
+  </main>
 </body>
 </html>
