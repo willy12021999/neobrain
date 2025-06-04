@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Espace Enseignant</title>
+    <link rel="stylesheet" href="style_enseignant.css">
+</head>
+<body>
+    <header>
+        <h1>Plateforme Enseignant</h1>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="etudiant.html">Espace Étudiant</a>
+            <a href="quiz_create.html">Créer un Quiz</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Liste des Matières</h2>
+        <ul>
+            <li>Mécanique</li>
+            <li>Thermodynamique</li>
+            <li>Électrotechnique</li>
+            <li>Mathématiques</li>
+            <li>Physique</li>
+        </ul>
+    </main>
+</body>
+</html>

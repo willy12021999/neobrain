@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #chatbox { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; margin-bottom: 10px; }
+        #chatbox div { margin: 5px 0; }
+        .bot { color: blue; }
+        .user { color: green; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Création de Quiz</h1>
+        <nav>
+            <a href="enseignant.html">Espace Enseignant</a>
+            <a href="etudiant.html">Espace Étudiant</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Assistant ChatBot</h2>
+            <div id="chatbox">
+                <div class="bot">Bonjour ! Décrivez votre quiz, je vous aide à le structurer.</div>
+            </div>
+            <input type="text" id="userInput" placeholder="Entrez votre message..." />
+            <button onclick="sendMessage()">Envoyer</button>
+        </section>
+
+        <section>
+            <h2>Ajouter un fichier de Quiz</h2>
+            <form id="uploadForm">
+                <input type="file" id="quizFile" accept=".pdf,.doc,.docx,.txt" required>
+                <button type="submit">Déposer</button>
+            </form>
+            <p id="uploadStatus"></p>
+        </section>
+    </main>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById("userInput");
+            const message = input.value.trim();
+            if (message === "") return;
+            const box = document.getElementById("chatbox");
+            box.innerHTML += `<div class='user'>Vous: ${message}</div>`;
+            // Simuler une réponse bot
+            box.innerHTML += `<div class='bot'>Bot: Merci, je vais générer un plan de quiz basé sur : "${message}"</div>`;
+            box.scrollTop = box.scrollHeight;
+            input.value = "";
+        }
+
+        document.getElementById("uploadForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const file = document.getElementById("quizFile").files[0];
+            if (file) {
+                document.getElementById("uploadStatus").innerText = `Fichier "${file.name}" déposé avec succès ! (Simulation)`;
+                // Ici, on simulerait un upload vers la page "quizz étudiant"
+            }
+        });
+    </script>
+</body>
+</html>
