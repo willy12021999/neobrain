@@ -1,66 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Créer un Quiz</title>
-    <link rel="stylesheet" href="style_enseignant">
-    <style>
-        #chatbox { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; margin-bottom: 10px; }
-        #chatbox div { margin: 5px 0; }
-        .bot { color: blue; }
-        .user { color: green; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Créer un Quiz - NEOBRAIN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1f26;
+      color: #f1f5f9;
+    }
+
+    header {
+      background-color: #2c2f38;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 20px;
+      color: #f1f5f9;
+    }
+
+    .profile img {
+      height: 40px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+
+    .profile span {
+      font-size: 12px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .form-section {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+      background-color: #2f3541;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-section h2 {
+      color: #facc15;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #404554;
+      color: #f1f5f9;
+    }
+
+    button {
+      background-color: #facc15;
+      color: #1e1f26;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e0bb12;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Création de Quiz</h1>
-        <nav>
-            <a href="enseignant.html">Espace Enseignant</a>
-            <a href="etudiant.html">Espace Étudiant</a>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Assistant ChatBot</h2>
-            <div id="chatbox">
-                <div class="bot">Bonjour ! Décrivez votre quiz, je vous aide à le structurer.</div>
-            </div>
-            <input type="text" id="userInput" placeholder="Entrez votre message..." />
-            <button onclick="sendMessage()">Envoyer</button>
-        </section>
+  <header>
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <a href="presentation.html">Presentation</a>
+      <a href="contacte.html">Contact</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+      <a href="1dex.html" target="_blank">Reservations d'une salle</a>
+    </div>
+    <div class="profile">
+      <img src="profil.png" alt="Profil" />
+      <span>PROFIL</span>
+    </div>
+    <div class="title">NEOBRAIN</div>
+    <img src="logo.png" alt="Logo Neobrain" class="logo" />
+  </header>
 
-        <section>
-            <h2>Ajouter un fichier de Quiz</h2>
-            <form id="uploadForm">
-                <input type="file" id="quizFile" accept=".pdf,.doc,.docx,.txt" required>
-                <button type="submit">Déposer</button>
-            </form>
-            <p id="uploadStatus"></p>
-        </section>
-    </main>
+  <section class="form-section">
+    <h2>Créer un Nouveau Quiz</h2>
+    <form action="mescours.html" method="post" enctype="multipart/form-data">
+      <label for="quiz-title">Titre du Quiz :</label>
+      <input type="text" id="quiz-title" name="quiz-title" required />
 
-    <script>
-        function sendMessage() {
-            const input = document.getElementById("userInput");
-            const message = input.value.trim();
-            if (message === "") return;
-            const box = document.getElementById("chatbox");
-            box.innerHTML += `<div class='user'>Vous: ${message}</div>`;
-            // Simuler une réponse bot
-            box.innerHTML += `<div class='bot'>Bot: Merci, je vais générer un plan de quiz basé sur : "${message}"</div>`;
-            box.scrollTop = box.scrollHeight;
-            input.value = "";
-        }
+      <label for="quiz-file">Fichier Quiz (PDF, DOCX, etc.) :</label>
+      <input type="file" id="quiz-file" name="quiz-file" required />
 
-        document.getElementById("uploadForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const file = document.getElementById("quizFile").files[0];
-            if (file) {
-                document.getElementById("uploadStatus").innerText = `Fichier "${file.name}" déposé avec succès ! (Simulation)`;
-                // Ici, on simulerait un upload vers la page "quizz étudiant"
-            }
-        });
-    </script>
+      <button type="submit">Ajouter le Quiz</button>
+    </form>
+  </section>
 </body>
 </html>
