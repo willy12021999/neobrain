@@ -2,159 +2,50 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quiz 1 - Système Thermodynamique</title>
+  <title>Quiz 1 : Notions de base</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background-color: #1e1f26;
-      color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #facc15;
-    }
-    .quiz-container {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: #2f3541;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    .question h3 {
-      margin-bottom: 10px;
-      color: #7ea9f7;
-    }
-    .question label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    button {
-      background-color: #facc15;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover:enabled {
-      background-color: #e0b100;
-    }
-    button:disabled {
-      background-color: #999;
-      cursor: not-allowed;
-    }
-    .result, .feedback-section {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .bar-container {
-      width: 100%;
-      background-color: #444;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    .bar {
-      height: 24px;
-      background-color: #facc15;
-      border-radius: 10px;
-      text-align: center;
-      color: #000;
-      line-height: 24px;
-    }
-    .feedback-section button {
-      margin: 10px;
-      font-size: 24px;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: #facc15;
-      border: none;
-      transition: background-color 0.3s;
-    }
-    .feedback-section button:hover {
-      background-color: #e0b100;
-    }
-    .history {
-      background-color: #3c4454;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-    .history h3 {
-      color: #facc15;
-    }
-    .history ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .history li {
-      margin-bottom: 8px;
-    }
-
-    /* Conteneur chatbot, caché par défaut */
-    #chatbotContainer {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      height: 450px;
-      z-index: 9999;
-      border: 1px solid #facc15;
-      border-radius: 8px;
-      background: #1e1f26;
-      overflow: hidden;
-    }
+    body { font-family: sans-serif; background: #1e1f26; color: white; padding: 20px; }
+    .quiz-container { background: #2f3541; padding: 30px; border-radius: 12px; max-width: 700px; margin: auto; }
+    h1 { text-align: center; color: #facc15; }
+    h3 { color: #7ea9f7; }
+    label { display: block; margin: 5px 0; }
+    button { background: #facc15; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    .bar-container { background: #444; border-radius: 10px; margin: 20px 0; }
+    .bar { height: 24px; background: #facc15; border-radius: 10px; line-height: 24px; color: black; text-align: center; }
   </style>
 </head>
 <body>
-  <h1>Quiz 1 : Système Thermodynamique</h1>
+  <h1>Quiz 1 : Notions de base</h1>
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
-        <h3>1. Que représente un système fermé ?</h3>
-        <label><input type="radio" name="q1" value="1" /> Échange d’énergie mais pas de matière</label>
-        <label><input type="radio" name="q1" value="0" /> Aucun échange avec l’extérieur</label>
-        <label><input type="radio" name="q1" value="0" /> Échange de matière uniquement</label>
+        <h3>1. Que mesure un dynamomètre ?</h3>
+        <label><input type="radio" name="q1" value="1"> La force</label>
+        <label><input type="radio" name="q1" value="0"> La masse</label>
+        <label><input type="radio" name="q1" value="0"> La vitesse</label>
       </div>
-
       <div class="question">
-        <h3>2. Quelle grandeur est une fonction d’état ?</h3>
-        <label><input type="radio" name="q2" value="1" /> Énergie interne</label>
-        <label><input type="radio" name="q2" value="0" /> Travail</label>
-        <label><input type="radio" name="q2" value="0" /> Chaleur</label>
+        <h3>2. Quelle est l’unité de la force dans le système SI ?</h3>
+        <label><input type="radio" name="q2" value="1"> Le newton (N)</label>
+        <label><input type="radio" name="q2" value="0"> Le kilogramme (kg)</label>
+        <label><input type="radio" name="q2" value="0"> Le joule (J)</label>
       </div>
-
       <div class="question">
-        <h3>3. Dans un système isolé, que se conserve-t-il ?</h3>
-        <label><input type="radio" name="q3" value="1" /> L’énergie totale</label>
-        <label><input type="radio" name="q3" value="0" /> La température</label>
-        <label><input type="radio" name="q3" value="0" /> Le volume</label>
+        <h3>3. Un vecteur force possède :</h3>
+        <label><input type="radio" name="q3" value="1"> Une direction, un sens et une intensité</label>
+        <label><input type="radio" name="q3" value="0"> Une intensité seulement</label>
+        <label><input type="radio" name="q3" value="0"> Un point seulement</label>
       </div>
-
       <div class="question">
-        <h3>4. Quelle transformation conserve l’entropie ?</h3>
-        <label><input type="radio" name="q4" value="1" /> Réversible</label>
-        <label><input type="radio" name="q4" value="0" /> Adiabatique</label>
-        <label><input type="radio" name="q4" value="0" /> Isochore</label>
+        <h3>4. Quelle grandeur n’est pas vectorielle ?</h3>
+        <label><input type="radio" name="q4" value="1"> L’énergie</label>
+        <label><input type="radio" name="q4" value="0"> La vitesse</label>
+        <label><input type="radio" name="q4" value="0"> L’accélération</label>
       </div>
-
-      <div style="text-align: center;">
-        <button type="button" id="submitBtn" onclick="calculerScore()">Valider mes réponses</button>
-      </div>
+      <div style="text-align:center;"><button type="button" onclick="calculerScore()">Valider mes réponses</button></div>
     </form>
 
     <div class="result" id="resultat"></div>
-
     <div class="feedback-section" id="feedback" style="display:none">
       <h2>Votre avis</h2>
       <button onclick="alert('Merci pour votre retour 👍')">👍</button>
@@ -168,116 +59,60 @@
     </div>
   </div>
 
-  <!-- Conteneur chatbot, vide au départ -->
-  <div id="chatbotContainer"></div>
-
   <script>
-    let tentatives = [];
-    const nbQuestions = 4;
-    const maxTentativesAvantReponses = 5;
-
-    const explications = [
-      "1. Un système fermé échange de l'énergie (chaleur, travail) avec l'extérieur mais pas de matière.",
-      "2. Une fonction d'état dépend uniquement de l'état actuel, comme l'énergie interne, contrairement au travail ou à la chaleur.",
-      "3. Dans un système isolé, l'énergie totale se conserve car il n'y a aucun échange d'énergie ou de matière.",
-      "4. La transformation réversible conserve l'entropie, contrairement aux transformations adiabatiques (qui peuvent être irréversibles) ou isochore."
-    ];
+    let tentatives = 0;
+    let historique = [];
 
     function calculerScore() {
       const form = document.getElementById('quizForm');
       const data = new FormData(form);
-
-      // Vérifier que toutes les questions sont répondues
-      for (let i = 1; i <= nbQuestions; i++) {
-        if (!data.has("q" + i)) {
-          alert("Veuillez répondre à toutes les questions avant de valider.");
-          return;
-        }
-      }
-
       let score = 0;
       for (let [_, value] of data.entries()) {
         score += parseInt(value);
       }
 
-      const pourcentage = (score / nbQuestions) * 100;
-      tentatives.push(score);
-
-      // Afficher le score
-      let resultatHTML = `
-        <h2>Résultat : ${score}/${nbQuestions}</h2>
+      const pourcentage = (score / 4) * 100;
+      document.getElementById('resultat').innerHTML = `
+        <h2>Résultat : ${score}/4</h2>
         <div class="bar-container">
           <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
         </div>
       `;
 
-      document.getElementById('resultat').innerHTML = resultatHTML;
-      document.getElementById('feedback').style.display = 'block';
+      historique.push(score);
+      tentatives++;
       afficherHistorique();
 
-      // Désactiver bouton seulement après la 5e tentative et afficher explications + chatbot
-      if (tentatives.length >= maxTentativesAvantReponses) {
-        afficherReponsesAvecExplications();
-        chargerChatbot();
-        document.getElementById('submitBtn').disabled = true;
+      if (score < 4 && tentatives >= 5) {
+        afficherReponses();
+        afficherChatbot();
       }
+
+      document.getElementById('feedback').style.display = 'block';
     }
 
     function afficherHistorique() {
-      const historySection = document.getElementById('historySection');
-      const historyList = document.getElementById('historyList');
-      const averageScore = document.getElementById('averageScore');
-
-      historyList.innerHTML = "";
-      tentatives.forEach((score, index) => {
+      const section = document.getElementById('historySection');
+      const liste = document.getElementById('historyList');
+      const moyenne = document.getElementById('averageScore');
+      liste.innerHTML = "";
+      historique.forEach((s, i) => {
         const item = document.createElement('li');
-        item.textContent = `Tentative ${index + 1} : ${score}/${nbQuestions}`;
-        historyList.appendChild(item);
+        item.textContent = `Tentative ${i + 1} : ${s}/4`;
+        liste.appendChild(item);
       });
-
-      const moyenne = tentatives.reduce((a, b) => a + b, 0) / tentatives.length;
-      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/${nbQuestions}`;
-
-      historySection.style.display = 'block';
+      const moy = historique.reduce((a, b) => a + b, 0) / historique.length;
+      moyenne.innerHTML = `<strong>Moyenne :</strong> ${moy.toFixed(2)}/4`;
+      section.style.display = 'block';
     }
 
-    function afficherReponsesAvecExplications() {
-      let reponsesHTML = '<h2>Réponses et explications :</h2><ul style="text-align:left;">';
-      explications.forEach(explication => {
-        reponsesHTML += `<li>${explication}</li>`;
-      });
-      reponsesHTML += '</ul>';
-
-      document.getElementById('resultat').innerHTML += reponsesHTML;
+    function afficherReponses() {
+      alert("Voici les bonnes réponses :\n1. La force\n2. Le newton\n3. Une direction, un sens et une intensité\n4. L’énergie");
     }
 
-    function chargerChatbot() {
-      const chatbotContainer = document.getElementById('chatbotContainer');
-
-      // Si déjà chargé, on ne recharge pas
-      if (chatbotContainer.dataset.loaded === "true") return;
-
-      chatbotContainer.style.display = 'block';
-
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jotform.com/widgets/06-10-2023/chatbot-widget.js';
-      script.async = true;
-
-      // Exemple de configuration (adapter selon besoin)
-      script.onload = () => {
-        // Initialise le widget avec l'id fourni par Jotform
-        if (window.JotFormChatbot) {
-          window.JotFormChatbot.init({
-            id: "231811052125442",
-            container: chatbotContainer,
-            width: "350px",
-            height: "450px",
-            welcomeMessage: "Bonjour, je suis votre assistant pour ce quiz !"
-          });
-          chatbotContainer.dataset.loaded = "true";
-        }
-      };
-
+    function afficherChatbot() {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1";
       document.body.appendChild(script);
     }
   </script>

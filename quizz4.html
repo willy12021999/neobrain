@@ -2,133 +2,47 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz 4 - Thermodynamique</title>
+  <title>Quiz 4 : Dynamique des systèmes</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background-color: #1e1f26;
-      color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #4ade80;
-    }
-    .quiz-container {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: #2f3541;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    .question h3 {
-      margin-bottom: 10px;
-      color: #7ea9f7;
-    }
-    .question label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    button {
-      background-color: #4ade80;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #22c55e;
-    }
-    .result, .feedback-section {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .bar-container {
-      width: 100%;
-      background-color: #444;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    .bar {
-      height: 24px;
-      background-color: #4ade80;
-      border-radius: 10px;
-      text-align: center;
-      color: #000;
-      line-height: 24px;
-    }
-    .feedback-section button {
-      margin: 10px;
-    }
-    .history {
-      background-color: #3c4454;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-    .history h3 {
-      color: #4ade80;
-    }
-    .history ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .history li {
-      margin-bottom: 8px;
-    }
+    body { font-family: sans-serif; background: #1e1f26; color: white; padding: 20px; }
+    .quiz-container { background: #2f3541; padding: 30px; border-radius: 12px; max-width: 700px; margin: auto; }
+    h1 { text-align: center; color: #facc15; }
+    h3 { color: #7ea9f7; }
+    label { display: block; margin: 5px 0; }
+    button { background: #facc15; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    .bar-container { background: #444; border-radius: 10px; margin: 20px 0; }
+    .bar { height: 24px; background: #facc15; border-radius: 10px; line-height: 24px; color: black; text-align: center; }
   </style>
 </head>
 <body>
-  <h1>Quiz 4 : Thermodynamique - Réfrigération et cycle de Rankine</h1>
+  <h1>Quiz 4 : Dynamique des systèmes</h1>
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
-        <h3>1. Quel est le rôle principal du condenseur dans un cycle de Rankine ?</h3>
-        <label><input type="radio" name="q1" value="1" /> Rejeter la chaleur vers l’extérieur</label>
-        <label><input type="radio" name="q1" value="0" /> Produire de l'énergie mécanique</label>
-        <label><input type="radio" name="q1" value="0" /> Compresser la vapeur</label>
+        <h3>1. Qu'est-ce que la dynamique des systèmes étudie principalement ?</h3>
+        <label><input type="radio" name="q1" value="1"> Le mouvement des systèmes en fonction des forces appliquées</label>
+        <label><input type="radio" name="q1" value="0"> La structure statique des matériaux</label>
+        <label><input type="radio" name="q1" value="0"> La thermodynamique des fluides</label>
       </div>
-
       <div class="question">
-        <h3>2. Dans un cycle frigorifique, le fluide frigorigène :</h3>
-        <label><input type="radio" name="q2" value="1" /> Change d’état lors de son parcours</label>
-        <label><input type="radio" name="q2" value="0" /> Reste toujours liquide</label>
-        <label><input type="radio" name="q2" value="0" /> Reste toujours gazeux</label>
+        <h3>2. Dans un système dynamique, l'état est souvent défini par :</h3>
+        <label><input type="radio" name="q2" value="0"> La température uniquement</label>
+        <label><input type="radio" name="q2" value="1"> Les variables d'état comme position et vitesse</label>
+        <label><input type="radio" name="q2" value="0"> La pression uniquement</label>
       </div>
-
       <div class="question">
-        <h3>3. Le rendement d’un cycle de Rankine dépend :</h3>
-        <label><input type="radio" name="q3" value="1" /> De la température des sources chaude et froide</label>
-        <label><input type="radio" name="q3" value="0" /> Du type de pompe utilisée uniquement</label>
-        <label><input type="radio" name="q3" value="0" /> De la couleur du fluide utilisé</label>
+        <h3>3. Le principe fondamental de la dynamique est basé sur :</h3>
+        <label><input type="radio" name="q3" value="1"> La deuxième loi de Newton (F = m·a)</label>
+        <label><input type="radio" name="q3" value="0"> La conservation de la masse</label>
+        <label><input type="radio" name="q3" value="0"> La loi des gaz parfaits</label>
       </div>
-
       <div class="question">
-        <h3>4. L’évaporateur d’une machine frigorifique :</h3>
-        <label><input type="radio" name="q4" value="1" /> Capte la chaleur de l’environnement</label>
-        <label><input type="radio" name="q4" value="0" /> Rejette la chaleur</label>
-        <label><input type="radio" name="q4" value="0" /> Condense la vapeur</label>
+        <h3>4. Un système est dit linéaire si :</h3>
+        <label><input type="radio" name="q4" value="1"> La superposition des effets est valable</label>
+        <label><input type="radio" name="q4" value="0"> Il n'y a pas de frottement</label>
+        <label><input type="radio" name="q4" value="0"> Il est isolé thermiquement</label>
       </div>
-
-      <div class="question">
-        <h3>5. Quel est le principal inconvénient des cycles thermiques réels par rapport aux cycles idéaux ?</h3>
-        <label><input type="radio" name="q5" value="1" /> Les pertes irréversibles</label>
-        <label><input type="radio" name="q5" value="0" /> Leur coût nul</label>
-        <label><input type="radio" name="q5" value="0" /> L’absence de travail utile</label>
-      </div>
-
-      <div style="text-align: center;">
-        <button type="button" onclick="calculerScore()">Valider mes réponses</button>
-      </div>
+      <div style="text-align:center;"><button type="button" onclick="calculerScore()">Valider mes réponses</button></div>
     </form>
 
     <div class="result" id="resultat"></div>
@@ -146,7 +60,8 @@
   </div>
 
   <script>
-    let tentatives = [];
+    let tentatives = 0;
+    let historique = [];
 
     function calculerScore() {
       const form = document.getElementById('quizForm');
@@ -156,39 +71,50 @@
         score += parseInt(value);
       }
 
-      const pourcentage = (score / 5) * 100;
+      const pourcentage = (score / 4) * 100;
       document.getElementById('resultat').innerHTML = `
-        <h2>Résultat : ${score}/5</h2>
+        <h2>Résultat : ${score}/4</h2>
         <div class="bar-container">
           <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
         </div>
       `;
-      document.getElementById('feedback').style.display = 'block';
 
-      tentatives.push(score);
+      historique.push(score);
+      tentatives++;
       afficherHistorique();
+
+      if (score < 4 && tentatives >= 5) {
+        afficherReponses();
+        afficherChatbot();
+      }
+
+      document.getElementById('feedback').style.display = 'block';
     }
 
     function afficherHistorique() {
-      const historySection = document.getElementById('historySection');
-      const historyList = document.getElementById('historyList');
-      const averageScore = document.getElementById('averageScore');
-
-      historyList.innerHTML = "";
-      tentatives.forEach((score, index) => {
+      const section = document.getElementById('historySection');
+      const liste = document.getElementById('historyList');
+      const moyenne = document.getElementById('averageScore');
+      liste.innerHTML = "";
+      historique.forEach((s, i) => {
         const item = document.createElement('li');
-        item.textContent = `Tentative ${index + 1} : ${score}/5`;
-        historyList.appendChild(item);
+        item.textContent = `Tentative ${i + 1} : ${s}/4`;
+        liste.appendChild(item);
       });
+      const moy = historique.reduce((a, b) => a + b, 0) / historique.length;
+      moyenne.innerHTML = `<strong>Moyenne :</strong> ${moy.toFixed(2)}/4`;
+      section.style.display = 'block';
+    }
 
-      const moyenne = tentatives.reduce((a, b) => a + b, 0) / tentatives.length;
-      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/5`;
+    function afficherReponses() {
+      alert("Voici les bonnes réponses :\n1. Le mouvement des systèmes en fonction des forces\n2. Variables d'état (position et vitesse)\n3. Deuxième loi de Newton (F=ma)\n4. La superposition des effets");
+    }
 
-      historySection.style.display = 'block';
+    function afficherChatbot() {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1";
+      document.body.appendChild(script);
     }
   </script>
- <script
-  src='https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1'>
-</script>
 </body>
 </html>

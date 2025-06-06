@@ -2,133 +2,47 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz 3 - Thermodynamique</title>
+  <title>Quiz 3 : Travail et énergie</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background-color: #1e1f26;
-      color: #f5f5f5;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #facc15;
-    }
-    .quiz-container {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: #2f3541;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    .question h3 {
-      margin-bottom: 10px;
-      color: #7ea9f7;
-    }
-    .question label {
-      display: block;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    button {
-      background-color: #facc15;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #e0b100;
-    }
-    .result, .feedback-section {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .bar-container {
-      width: 100%;
-      background-color: #444;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    .bar {
-      height: 24px;
-      background-color: #facc15;
-      border-radius: 10px;
-      text-align: center;
-      color: #000;
-      line-height: 24px;
-    }
-    .feedback-section button {
-      margin: 10px;
-    }
-    .history {
-      background-color: #3c4454;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-    .history h3 {
-      color: #facc15;
-    }
-    .history ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .history li {
-      margin-bottom: 8px;
-    }
+    body { font-family: sans-serif; background: #1e1f26; color: white; padding: 20px; }
+    .quiz-container { background: #2f3541; padding: 30px; border-radius: 12px; max-width: 700px; margin: auto; }
+    h1 { text-align: center; color: #facc15; }
+    h3 { color: #7ea9f7; }
+    label { display: block; margin: 5px 0; }
+    button { background: #facc15; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+    .bar-container { background: #444; border-radius: 10px; margin: 20px 0; }
+    .bar { height: 24px; background: #facc15; border-radius: 10px; line-height: 24px; color: black; text-align: center; }
   </style>
 </head>
 <body>
-  <h1>Quiz 3 : Thermodynamique - Machines thermiques</h1>
+  <h1>Quiz 3 : Travail et énergie</h1>
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
-        <h3>1. Quel est le rendement d’une machine thermique idéale de Carnot ?</h3>
-        <label><input type="radio" name="q1" value="1" /> Inférieur à 1</label>
-        <label><input type="radio" name="q1" value="0" /> Supérieur à 1</label>
-        <label><input type="radio" name="q1" value="0" /> Toujours nul</label>
+        <h3>1. Le travail d'une force est égal à :</h3>
+        <label><input type="radio" name="q1" value="1"> Force × déplacement × cos(θ)</label>
+        <label><input type="radio" name="q1" value="0"> Force ÷ déplacement</label>
+        <label><input type="radio" name="q1" value="0"> Force + déplacement</label>
       </div>
-
       <div class="question">
-        <h3>2. Le premier principe de la thermodynamique concerne :</h3>
-        <label><input type="radio" name="q2" value="1" /> La conservation de l'énergie</label>
-        <label><input type="radio" name="q2" value="0" /> L'entropie</label>
-        <label><input type="radio" name="q2" value="0" /> L'équilibre chimique</label>
+        <h3>2. L'énergie cinétique dépend :</h3>
+        <label><input type="radio" name="q2" value="0"> De la vitesse uniquement</label>
+        <label><input type="radio" name="q2" value="1"> De la masse et du carré de la vitesse</label>
+        <label><input type="radio" name="q2" value="0"> De la masse uniquement</label>
       </div>
-
       <div class="question">
-        <h3>3. Une pompe à chaleur transfert :</h3>
-        <label><input type="radio" name="q3" value="1" /> De la chaleur d’un milieu froid vers un chaud</label>
-        <label><input type="radio" name="q3" value="0" /> De l'énergie mécanique vers l'énergie chimique</label>
-        <label><input type="radio" name="q3" value="0" /> Du chaud vers le froid uniquement</label>
+        <h3>3. La loi de conservation de l'énergie affirme que :</h3>
+        <label><input type="radio" name="q3" value="1"> L'énergie totale reste constante dans un système isolé</label>
+        <label><input type="radio" name="q3" value="0"> L'énergie peut être créée ou détruite</label>
+        <label><input type="radio" name="q3" value="0"> L'énergie cinétique est toujours nulle</label>
       </div>
-
       <div class="question">
-        <h3>4. Dans un cycle thermodynamique, l'énergie interne :</h3>
-        <label><input type="radio" name="q4" value="1" /> Revient à sa valeur initiale</label>
-        <label><input type="radio" name="q4" value="0" /> Diminue toujours</label>
-        <label><input type="radio" name="q4" value="0" /> Augmente toujours</label>
+        <h3>4. L'énergie potentielle gravitationnelle d'un objet dépend :</h3>
+        <label><input type="radio" name="q4" value="1"> De sa masse, de la hauteur, et de la gravité</label>
+        <label><input type="radio" name="q4" value="0"> De sa vitesse uniquement</label>
+        <label><input type="radio" name="q4" value="0"> De son volume uniquement</label>
       </div>
-
-      <div class="question">
-        <h3>5. Le travail fourni par une machine thermique est :</h3>
-        <label><input type="radio" name="q5" value="1" /> La différence entre la chaleur reçue et celle rejetée</label>
-        <label><input type="radio" name="q5" value="0" /> Égal à la chaleur reçue</label>
-        <label><input type="radio" name="q5" value="0" /> Égal à la chaleur rejetée</label>
-      </div>
-
-      <div style="text-align: center;">
-        <button type="button" onclick="calculerScore()">Valider mes réponses</button>
-      </div>
+      <div style="text-align:center;"><button type="button" onclick="calculerScore()">Valider mes réponses</button></div>
     </form>
 
     <div class="result" id="resultat"></div>
@@ -146,7 +60,8 @@
   </div>
 
   <script>
-    let tentatives = [];
+    let tentatives = 0;
+    let historique = [];
 
     function calculerScore() {
       const form = document.getElementById('quizForm');
@@ -156,40 +71,50 @@
         score += parseInt(value);
       }
 
-      const pourcentage = (score / 5) * 100;
+      const pourcentage = (score / 4) * 100;
       document.getElementById('resultat').innerHTML = `
-        <h2>Résultat : ${score}/5</h2>
+        <h2>Résultat : ${score}/4</h2>
         <div class="bar-container">
           <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
         </div>
       `;
-      document.getElementById('feedback').style.display = 'block';
 
-      tentatives.push(score);
+      historique.push(score);
+      tentatives++;
       afficherHistorique();
+
+      if (score < 4 && tentatives >= 5) {
+        afficherReponses();
+        afficherChatbot();
+      }
+
+      document.getElementById('feedback').style.display = 'block';
     }
 
     function afficherHistorique() {
-      const historySection = document.getElementById('historySection');
-      const historyList = document.getElementById('historyList');
-      const averageScore = document.getElementById('averageScore');
-
-      historyList.innerHTML = "";
-      tentatives.forEach((score, index) => {
+      const section = document.getElementById('historySection');
+      const liste = document.getElementById('historyList');
+      const moyenne = document.getElementById('averageScore');
+      liste.innerHTML = "";
+      historique.forEach((s, i) => {
         const item = document.createElement('li');
-        item.textContent = `Tentative ${index + 1} : ${score}/5`;
-        historyList.appendChild(item);
+        item.textContent = `Tentative ${i + 1} : ${s}/4`;
+        liste.appendChild(item);
       });
+      const moy = historique.reduce((a, b) => a + b, 0) / historique.length;
+      moyenne.innerHTML = `<strong>Moyenne :</strong> ${moy.toFixed(2)}/4`;
+      section.style.display = 'block';
+    }
 
-      const moyenne = tentatives.reduce((a, b) => a + b, 0) / tentatives.length;
-      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/5`;
+    function afficherReponses() {
+      alert("Voici les bonnes réponses :\n1. Force × déplacement × cos(θ)\n2. Masse et carré de la vitesse\n3. L'énergie totale reste constante\n4. Masse, hauteur et gravité");
+    }
 
-      historySection.style.display = 'block';
+    function afficherChatbot() {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1";
+      document.body.appendChild(script);
     }
   </script>
- <script
-  src='https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1'>
-</script>
-
 </body>
 </html>
