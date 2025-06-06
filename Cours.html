@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mes Cours - NEOBRAIN</title>
+  <style>
+    body {
+      background-color: #1e1f26;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      color: #facc15;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #facc15;
+      color: #1e1f26;
+      cursor: pointer;
+    }
+    ul {
+      margin-top: 40px;
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #2f3541;
+      margin: 10px 0;
+      padding: 15px;
+      border-left: 6px solid #7ea9f7;
+      border-radius: 10px;
+    }
+    a.course-link {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mes Cours</h1>
+  <form id="courseForm">
+    <input type="text" id="title" placeholder="Titre du cours" required />
+    <textarea id="description" rows="4" placeholder="Description du cours" required></textarea>
+    <input type="url" id="link" placeholder="Lien du document (PDF, etc.)" required />
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <ul id="courseList"></ul>
+
+  <script>
+    const form = document.getElementById('courseForm');
+    const list = document.getElementById('courseList');
+
+    function loadCourses() {
+      const saved = JSON.parse(localStorage.getItem('cours') || '[]');
+      list.innerHTML = '';
+      saved.forEach(cours => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${cours.title}</strong><p>${cours.description}</p><a href="${cours.link}" target="_blank" class="course-link">Voir le document</a>`;
+        list.appendChild(li);
+      });
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+      const link = document.getElementById('link').value;
+      const saved = JSON.parse(localStorage.getItem('cours') || '[]');
+      saved.push({ title, description, link });
+      localStorage.setItem('cours', JSON.stringify(saved));
+      form.reset();
+      loadCourses();
+    });
+
+    // Ajout automatique d'un cours prédéfini si la liste est vide
+    if (!localStorage.getItem('cours')) {
+      localStorage.setItem('cours', JSON.stringify([
+        {
+          title: 'Cours de Mécanique',
+          description: 'Livre PDF sur la mécanique classique, proposé par Femto-Physique.',
+          link: 'https://femto-physique.fr/mecanique/pdf/book_meca.pdf'
+        }
+      ]));
+    }
+
+    loadCourses();
+  </script>
+</body>
+</html>
