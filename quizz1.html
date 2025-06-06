@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz 1 - Système Thermodynamique</title>
   <style>
     body {
@@ -45,8 +45,12 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-    button:hover {
+    button:hover:enabled {
       background-color: #e0b100;
+    }
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
     }
     .result, .feedback-section {
       text-align: center;
@@ -68,6 +72,16 @@
     }
     .feedback-section button {
       margin: 10px;
+      font-size: 24px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #facc15;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    .feedback-section button:hover {
+      background-color: #e0b100;
     }
     .history {
       background-color: #3c4454;
@@ -84,6 +98,21 @@
     }
     .history li {
       margin-bottom: 8px;
+    }
+
+    /* Conteneur chatbot, caché par défaut */
+    #chatbotContainer {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      height: 450px;
+      z-index: 9999;
+      border: 1px solid #facc15;
+      border-radius: 8px;
+      background: #1e1f26;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -120,11 +149,12 @@
       </div>
 
       <div style="text-align: center;">
-        <button type="button" onclick="calculerScore()">Valider mes réponses</button>
+        <button type="button" id="submitBtn" onclick="calculerScore()">Valider mes réponses</button>
       </div>
     </form>
 
     <div class="result" id="resultat"></div>
+
     <div class="feedback-section" id="feedback" style="display:none">
       <h2>Votre avis</h2>
       <button onclick="alert('Merci pour votre retour 👍')">👍</button>
@@ -138,29 +168,59 @@
     </div>
   </div>
 
+  <!-- Conteneur chatbot, vide au départ -->
+  <div id="chatbotContainer"></div>
+
   <script>
     let tentatives = [];
+    const nbQuestions = 4;
+    const maxTentativesAvantReponses = 5;
+
+    const explications = [
+      "1. Un système fermé échange de l'énergie (chaleur, travail) avec l'extérieur mais pas de matière.",
+      "2. Une fonction d'état dépend uniquement de l'état actuel, comme l'énergie interne, contrairement au travail ou à la chaleur.",
+      "3. Dans un système isolé, l'énergie totale se conserve car il n'y a aucun échange d'énergie ou de matière.",
+      "4. La transformation réversible conserve l'entropie, contrairement aux transformations adiabatiques (qui peuvent être irréversibles) ou isochore."
+    ];
 
     function calculerScore() {
       const form = document.getElementById('quizForm');
       const data = new FormData(form);
+
+      // Vérifier que toutes les questions sont répondues
+      for (let i = 1; i <= nbQuestions; i++) {
+        if (!data.has("q" + i)) {
+          alert("Veuillez répondre à toutes les questions avant de valider.");
+          return;
+        }
+      }
+
       let score = 0;
       for (let [_, value] of data.entries()) {
         score += parseInt(value);
       }
 
-      const pourcentage = (score / 4) * 100;
-      document.getElementById('resultat').innerHTML = `
-        <h2>Résultat : ${score}/4</h2>
+      const pourcentage = (score / nbQuestions) * 100;
+      tentatives.push(score);
+
+      // Afficher le score
+      let resultatHTML = `
+        <h2>Résultat : ${score}/${nbQuestions}</h2>
         <div class="bar-container">
           <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
         </div>
       `;
-      document.getElementById('feedback').style.display = 'block';
 
-      // Ajouter tentative
-      tentatives.push(score);
+      document.getElementById('resultat').innerHTML = resultatHTML;
+      document.getElementById('feedback').style.display = 'block';
       afficherHistorique();
+
+      // Désactiver bouton seulement après la 5e tentative et afficher explications + chatbot
+      if (tentatives.length >= maxTentativesAvantReponses) {
+        afficherReponsesAvecExplications();
+        chargerChatbot();
+        document.getElementById('submitBtn').disabled = true;
+      }
     }
 
     function afficherHistorique() {
@@ -171,19 +231,55 @@
       historyList.innerHTML = "";
       tentatives.forEach((score, index) => {
         const item = document.createElement('li');
-        item.textContent = `Tentative ${index + 1} : ${score}/4`;
+        item.textContent = `Tentative ${index + 1} : ${score}/${nbQuestions}`;
         historyList.appendChild(item);
       });
 
       const moyenne = tentatives.reduce((a, b) => a + b, 0) / tentatives.length;
-      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/4`;
+      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/${nbQuestions}`;
 
       historySection.style.display = 'block';
     }
-  </script>
-  <script
-  src='https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1'>
-</script>
 
+    function afficherReponsesAvecExplications() {
+      let reponsesHTML = '<h2>Réponses et explications :</h2><ul style="text-align:left;">';
+      explications.forEach(explication => {
+        reponsesHTML += `<li>${explication}</li>`;
+      });
+      reponsesHTML += '</ul>';
+
+      document.getElementById('resultat').innerHTML += reponsesHTML;
+    }
+
+    function chargerChatbot() {
+      const chatbotContainer = document.getElementById('chatbotContainer');
+
+      // Si déjà chargé, on ne recharge pas
+      if (chatbotContainer.dataset.loaded === "true") return;
+
+      chatbotContainer.style.display = 'block';
+
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jotform.com/widgets/06-10-2023/chatbot-widget.js';
+      script.async = true;
+
+      // Exemple de configuration (adapter selon besoin)
+      script.onload = () => {
+        // Initialise le widget avec l'id fourni par Jotform
+        if (window.JotFormChatbot) {
+          window.JotFormChatbot.init({
+            id: "231811052125442",
+            container: chatbotContainer,
+            width: "350px",
+            height: "450px",
+            welcomeMessage: "Bonjour, je suis votre assistant pour ce quiz !"
+          });
+          chatbotContainer.dataset.loaded = "true";
+        }
+      };
+
+      document.body.appendChild(script);
+    }
+  </script>
 </body>
 </html>
