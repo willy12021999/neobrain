@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Annales Concours & Écoles d'Ingénieur - NEOBRAIN</title>
+  <style>
+    :root {
+      --bg-body: #1e1f26;
+      --bg-header: #2c2f38;
+      --bg-sidebar: #2c2f38;
+      --bg-card: #2f3541;
+      --hover-card: #3c4353;
+      --text-light: #f5f5f5;
+      --accent: #7ea9f7;
+      --border: #444;
+      --bubble-border: #facc15; 
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-light);
+    }
+    header {
+      background-color: var(--bg-header);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    .navbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .navbar a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .navbar a:hover {
+      color: var(--accent);
+    }
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile img {
+      height: 40px;
+      border-radius: 50%;
+    }
+    .profile span {
+      font-size: 12px;
+      color: #ccc;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    .logo {
+      height: 65px;
+    }
+    .sidebar {
+      width: 160px;
+      background-color: var(--bg-sidebar);
+      padding-top: 20px;
+      height: calc(100vh - 80px);
+      position: fixed;
+      top: 80px;
+      left: 0;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .sidebar a {
+      background-color: transparent;
+      color: var(--text-light);
+      padding: 10px;
+      width: 120px;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .sidebar a:hover {
+      background-color: var(--accent);
+      color: #000;
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #555;
+      margin-bottom: 20px;
+    }
+    .main {
+      margin-left: 180px;
+      padding: 40px 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background-color: var(--bg-card);
+      border-left: 5px solid var(--bubble-border);
+      padding: 20px 25px 25px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      color: var(--text-light);
+      cursor: default;
+      transition: transform 0.3s, background-color 0.3s;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      user-select: none;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: var(--hover-card);
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--bubble-border);
+      text-transform: uppercase;
+    }
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .card li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <a href="presentation.html">Présentation</a>
+      <a href="contacte.html">Contact</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+      <a href="1dex.html" target="_blank">Réservations d'une salle</a>
+    </div>
+    <div class="profile">
+      <img src="profil.png" alt="Profil" />
+      <span>PROFIL</span>
+    </div>
+    <div class="title">NEOBRAIN</div>
+    <img src="logo.png" alt="Logo Neobrain" class="logo" />
+  </header>
+
+  <div class="sidebar">
+    <a href="https://epfedu.sharepoint.com/sites/my_epf" target="_blank">SharePoint</a>
+    <a href="https://moodle.epf.fr" target="_blank">Moodle</a>
+    <a href="https://teams.microsoft.com" target="_blank">Teams</a>
+    <a href="https://outlook.office.com/" target="_blank">Mail</a>
+    <a href="point ecologique.html">Points écologiques</a>
+    <a href="https://univ.scholarvox.com/" target="_blank">ScholarVox</a>
+    <a href="https://epfedu.sharepoint.com/sites/AssociationIPN" target="_blank">Association IPN</a>
+    <a href="https://vapp.epf.fr/Citrix/storeWeb/" target="_blank">Citrix Internet</a>
+  </div>
+
+  <section class="main">
+    <div class="card">
+      <h3>Concours CCP</h3>
+      <ul>
+        <li><a href="https://www.concours-centrale-supelec.fr/wp-content/uploads/2023/01/CCP-MATHS-2022.pdf" target="_blank">Mathématiques CCP 2022</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/wp-content/uploads/2023/01/CCP-Physique-2022.pdf" target="_blank">Physique CCP 2022</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/wp-content/uploads/2023/01/CCP-Chimie-2022.pdf" target="_blank">Chimie CCP 2022</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/annales" target="_blank">Toutes les annales CCP</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Concours Mines-Ponts</h3>
+      <ul>
+        <li><a href="https://mines-ponts.org/concours/archives/2023/MATHS.pdf" target="_blank">Mathématiques Mines-Ponts 2023</a></li>
+        <li><a href="https://mines-ponts.org/concours/archives/2023/PHYSIQUE.pdf" target="_blank">Physique Mines-Ponts 2023</a></li>
+        <li><a href="https://mines-ponts.org/concours/archives/2023/CHIMIE.pdf" target="_blank">Chimie Mines-Ponts 2023</a></li>
+        <li><a href="https://mines-ponts.org/concours/archives" target="_blank">Toutes les annales Mines-Ponts</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Concours Centrale-Supélec</h3>
+      <ul>
+        <li><a href="https://www.concours-centrale-supelec.fr/annales/2023/MATHS.pdf" target="_blank">Mathématiques Centrale-Supélec 2023</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/annales/2023/PHYSIQUE.pdf" target="_blank">Physique Centrale-Supélec 2023</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/annales/2023/CHIMIE.pdf" target="_blank">Chimie Centrale-Supélec 2023</a></li>
+        <li><a href="https://www.concours-centrale-supelec.fr/annales" target="_blank">Toutes les annales Centrale-Supélec</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Annales Écoles d'Ingénieur (Exemples)</h3>
+      <ul>
+        <li><a href="https://archives.hec.fr/concours" target="_blank">HEC Paris - Annales Concours</a></li>
+        <li><a href="https://archives.ecole-polytechnique.fr/concours" target="_blank">Polytechnique - Archives Concours</a></li>
+        <li><a href="https://www.ens.fr/sites/default/files/2018-01/Concours-ENS.pdf" target="_blank">ENS - Concours</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Banques d'épreuves Prépas</h3>
+      <ul>
+        <li><a href="https://banque-epreuve.cnrs.fr/" target="_blank">Banque d'épreuves CNRS</a></li>
+        <li><a href="https://www.ens-paris-saclay.fr/spip.php?article2501" target="_blank">Banque d’épreuves ENS Paris-Saclay</a></li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
