@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz 1 - Système Thermodynamique</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #1e1f26;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #facc15;
+    }
+    .quiz-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #2f3541;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+      color: #7ea9f7;
+    }
+    .question label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    button {
+      background-color: #facc15;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #e0b100;
+    }
+    .result, .feedback-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .bar-container {
+      width: 100%;
+      background-color: #444;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .bar {
+      height: 24px;
+      background-color: #facc15;
+      border-radius: 10px;
+      text-align: center;
+      color: #000;
+      line-height: 24px;
+    }
+    .feedback-section button {
+      margin: 10px;
+    }
+    .history {
+      background-color: #3c4454;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .history h3 {
+      color: #facc15;
+    }
+    .history ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .history li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz 1 : Système Thermodynamique</h1>
+  <div class="quiz-container">
+    <form id="quizForm">
+      <div class="question">
+        <h3>1. Que représente un système fermé ?</h3>
+        <label><input type="radio" name="q1" value="1" /> Échange d’énergie mais pas de matière</label>
+        <label><input type="radio" name="q1" value="0" /> Aucun échange avec l’extérieur</label>
+        <label><input type="radio" name="q1" value="0" /> Échange de matière uniquement</label>
+      </div>
+
+      <div class="question">
+        <h3>2. Quelle grandeur est une fonction d’état ?</h3>
+        <label><input type="radio" name="q2" value="1" /> Énergie interne</label>
+        <label><input type="radio" name="q2" value="0" /> Travail</label>
+        <label><input type="radio" name="q2" value="0" /> Chaleur</label>
+      </div>
+
+      <div class="question">
+        <h3>3. Dans un système isolé, que se conserve-t-il ?</h3>
+        <label><input type="radio" name="q3" value="1" /> L’énergie totale</label>
+        <label><input type="radio" name="q3" value="0" /> La température</label>
+        <label><input type="radio" name="q3" value="0" /> Le volume</label>
+      </div>
+
+      <div class="question">
+        <h3>4. Quelle transformation conserve l’entropie ?</h3>
+        <label><input type="radio" name="q4" value="1" /> Réversible</label>
+        <label><input type="radio" name="q4" value="0" /> Adiabatique</label>
+        <label><input type="radio" name="q4" value="0" /> Isochore</label>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="button" onclick="calculerScore()">Valider mes réponses</button>
+      </div>
+    </form>
+
+    <div class="result" id="resultat"></div>
+    <div class="feedback-section" id="feedback" style="display:none">
+      <h2>Votre avis</h2>
+      <button onclick="alert('Merci pour votre retour 👍')">👍</button>
+      <button onclick="alert('Merci pour votre retour 👎')">👎</button>
+    </div>
+
+    <div class="history" id="historySection" style="display:none">
+      <h3>Historique des tentatives</h3>
+      <ul id="historyList"></ul>
+      <p id="averageScore"></p>
+    </div>
+  </div>
+
+  <script>
+    let tentatives = [];
+
+    function calculerScore() {
+      const form = document.getElementById('quizForm');
+      const data = new FormData(form);
+      let score = 0;
+      for (let [_, value] of data.entries()) {
+        score += parseInt(value);
+      }
+
+      const pourcentage = (score / 4) * 100;
+      document.getElementById('resultat').innerHTML = `
+        <h2>Résultat : ${score}/4</h2>
+        <div class="bar-container">
+          <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
+        </div>
+      `;
+      document.getElementById('feedback').style.display = 'block';
+
+      // Ajouter tentative
+      tentatives.push(score);
+      afficherHistorique();
+    }
+
+    function afficherHistorique() {
+      const historySection = document.getElementById('historySection');
+      const historyList = document.getElementById('historyList');
+      const averageScore = document.getElementById('averageScore');
+
+      historyList.innerHTML = "";
+      tentatives.forEach((score, index) => {
+        const item = document.createElement('li');
+        item.textContent = `Tentative ${index + 1} : ${score}/4`;
+        historyList.appendChild(item);
+      });
+
+      const moyenne = tentatives.reduce((a, b) => a + b, 0) / tentatives.length;
+      averageScore.innerHTML = `<strong>Moyenne des tentatives :</strong> ${moyenne.toFixed(2)}/4`;
+
+      historySection.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
