@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Personnel - NEOBRAIN</title>
+  <style>
+    body {
+      background-color: #1e1f26;
+      color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2c2f38;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #7ea9f7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #2f3541;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      color: #facc15;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #7ea9f7;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .item-list {
+      margin-top: 20px;
+    }
+
+    .item {
+      background-color: #1e1f26;
+      padding: 10px;
+      border-left: 4px solid #facc15;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item a {
+      color: #7ea9f7;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .delete-btn {
+      background-color: red;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="title">Espace Personnel</div>
+  <a href="index.html" style="color:#f5f5f5; text-decoration:none;">⬅ Retour</a>
+</header>
+
+<div class="container">
+  <h2>Fichiers</h2>
+  <form id="fileForm">
+    <input type="text" id="fileTitle" placeholder="Titre du fichier" required />
+    <input type="url" id="fileLink" placeholder="Lien du document (PDF, image, etc.)" required />
+    <button type="submit">Ajouter</button>
+  </form>
+  <div class="item-list" id="fileList"></div>
+
+  <hr style="margin: 30px 0; border: 1px solid #444;">
+
+  <h2>Notes</h2>
+  <textarea id="noteInput" placeholder="Écrivez une nouvelle note..."></textarea><br>
+  <button onclick="addNote()">Ajouter la note</button>
+
+  <div class="item-list" id="noteList"></div>
+</div>
+
+<script>
+  // ----------- GESTION FICHIERS VIA LIEN ------------
+  const fileForm = document.getElementById('fileForm');
+  const fileList = document.getElementById('fileList');
+
+  function displayFiles() {
+    const files = JSON.parse(localStorage.getItem('userFiles') || '[]');
+    fileList.innerHTML = '';
+    files.forEach((file, index) => {
+      const div = document.createElement('div');
+      div.className = 'item';
+
+      const link = document.createElement('a');
+      link.href = file.link;
+      link.target = '_blank';
+      link.textContent = file.title;
+
+      const del = document.createElement('button');
+      del.textContent = 'Supprimer';
+      del.className = 'delete-btn';
+      del.onclick = () => {
+        files.splice(index, 1);
+        localStorage.setItem('userFiles', JSON.stringify(files));
+        displayFiles();
+      };
+
+      div.appendChild(link);
+      div.appendChild(del);
+      fileList.appendChild(div);
+    });
+  }
+
+  fileForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('fileTitle').value;
+    const link = document.getElementById('fileLink').value;
+    const files = JSON.parse(localStorage.getItem('userFiles') || '[]');
+    files.push({ title, link });
+    localStorage.setItem('userFiles', JSON.stringify(files));
+    fileForm.reset();
+    displayFiles();
+  });
+
+  // ----------- GESTION NOTES ------------
+  function addNote() {
+    const text = document.getElementById('noteInput').value.trim();
+    if (text === '') return;
+    let notes = JSON.parse(localStorage.getItem('userNotes')) || [];
+    notes.push(text);
+    localStorage.setItem('userNotes', JSON.stringify(notes));
+    document.getElementById('noteInput').value = '';
+    displayNotes();
+  }
+
+  function displayNotes() {
+    const noteList = document.getElementById('noteList');
+    noteList.innerHTML = '';
+    const notes = JSON.parse(localStorage.getItem('userNotes')) || [];
+
+    notes.forEach((note, index) => {
+      const div = document.createElement('div');
+      div.className = 'item';
+
+      const p = document.createElement('div');
+      p.textContent = note;
+
+      const del = document.createElement('button');
+      del.textContent = 'Supprimer';
+      del.className = 'delete-btn';
+      del.onclick = () => {
+        notes.splice(index, 1);
+        localStorage.setItem('userNotes', JSON.stringify(notes));
+        displayNotes();
+      };
+
+      div.appendChild(p);
+      div.appendChild(del);
+      noteList.appendChild(div);
+    });
+  }
+
+  // ----------- INIT ------------
+  window.onload = function () {
+    displayFiles();
+    displayNotes();
+  };
+</script>
+
+</body>
+</html>
