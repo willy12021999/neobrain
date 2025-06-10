@@ -230,7 +230,7 @@
         <a href="#">Profil</a>
         <a href="#">Espace personnel</a>
         <a href="#">Notes</a>
-        <a href="#">Déconnexion</a>
+        <a href="#" onclick="logout()">Déconnexion</a>
       </div>
     </div>
     <div class="title">NEOBRAIN</div>
@@ -301,6 +301,36 @@
         }
       }
     }
+
+    
   </script>
+
+  <script>
+  if (!localStorage.getItem("loggedIn")) {
+    window.location.href = "login.html";
+  }
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.profile img')) {
+      const dropdown = document.getElementById("dropdown");
+      if (dropdown && dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+      }
+    }
+  }
+
+  
+  function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "connexion.html";
+}
+</script>
+
+
 </body>
 </html>
