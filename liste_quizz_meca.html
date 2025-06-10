@@ -72,9 +72,11 @@
     .quiz-list {
       margin-top: 30px;
     }
-    .quiz-list a {
-      display: block;
-      margin: 15px auto;
+    .quiz-item {
+      margin-bottom: 30px;
+    }
+    .quiz-item a {
+      display: inline-block;
       background-color: #2f3541;
       padding: 15px;
       border-radius: 10px;
@@ -84,9 +86,14 @@
       width: 300px;
       transition: background-color 0.3s;
     }
-    .quiz-list a:hover {
+    .quiz-item a:hover {
       background-color: #facc15;
       color: #1e1f26;
+    }
+    .quiz-stats {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #cbd5e1;
     }
   </style>
 </head>
@@ -97,9 +104,8 @@
       <a href="presentation.html">Presentation</a>
       <a href="contacte.html">Contact</a>
       <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
-      <a href="1dex.html" traget="_blank" >reservations d'une salle </a>
+      <a href="1dex.html" target="_blank">Réservations d'une salle</a>
       <a href="mescours.html">Mes Cours</a>
-      
     </div>
     <div class="title">NEOBRAIN</div>
     <img src="logo.png" alt="Logo Neobrain" class="logo" />
@@ -117,11 +123,48 @@
     </div>
 
     <div class="quiz-list">
-      <a href="quizz1.html">Quiz 1 : Notions de base ✅</a>
-      <a href="quizz2.html">Quiz 2 : Forces et mouvements ✅</a>
-      <a href="quizz3.html">Quiz 3 : Travail et énergie ✅</a>
-      <a href="quizz4.html">Quiz 4 : Dynamique des systèmes</a>
+      <div class="quiz-item" id="quizz1">
+        <a href="quizz1.html">Quiz 1 : Notions de base</a>
+        <div class="quiz-stats" id="stats_quizz1"></div>
+      </div>
+      <div class="quiz-item" id="quizz2">
+        <a href="quizz2.html">Quiz 2 : Forces et mouvements</a>
+        <div class="quiz-stats" id="stats_quizz2"></div>
+      </div>
+      <div class="quiz-item" id="quizz3">
+        <a href="quizz3.html">Quiz 3 : Travail et énergie</a>
+        <div class="quiz-stats" id="stats_quizz3"></div>
+      </div>
+      <div class="quiz-item" id="quizz4">
+        <a href="quizz4.html">Quiz 4 : Dynamique des systèmes</a>
+        <div class="quiz-stats" id="stats_quizz4"></div>
+      </div>
     </div>
   </main>
+
+  <script>
+    function getStats(quizId) {
+      const tentatives = parseInt(localStorage.getItem(`tentatives_${quizId}`)) || 0;
+      const historique = JSON.parse(localStorage.getItem(`historique_${quizId}`)) || [];
+      let moyenne = 0;
+      if (historique.length > 0) {
+        moyenne = historique.reduce((a, b) => a + b, 0) / historique.length;
+      }
+      return { tentatives, moyenne };
+    }
+
+    function updateQuizStats() {
+      const quizIds = ['quizz1', 'quizz2', 'quizz3', 'quizz4'];
+      quizIds.forEach(id => {
+        const stats = getStats(id);
+        const el = document.getElementById(`stats_${id}`);
+        if (el) {
+          el.textContent = `Tentatives : ${stats.tentatives} — Moyenne : ${stats.moyenne.toFixed(2)} / 4`;
+        }
+      });
+    }
+
+    window.onload = updateQuizStats;
+  </script>
 </body>
 </html>
