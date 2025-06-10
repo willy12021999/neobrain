@@ -67,7 +67,7 @@
     .progress-fill {
       height: 100%;
       background-color: #facc15;
-      width: 75%; /* Valeur dynamique simulée ici */
+      width: 0%;
     }
     .quiz-list {
       margin-top: 30px;
@@ -115,11 +115,11 @@
     <h1>Quizz de Mécanique</h1>
 
     <div class="stats">
-      <p><strong>Progression :</strong> 3/4 quiz réalisés</p>
+      <p id="progressionText"><strong>Progression :</strong> 0/4 quiz réalisés</p>
       <div class="progress-bar">
-        <div class="progress-fill" style="width: 75%;"></div>
+        <div class="progress-fill" id="progressFill"></div>
       </div>
-      <p><strong>Moyenne des résultats :</strong> 82%</p>
+      <p><strong>Moyenne des résultats :</strong> <span id="moyenneGlobale">Calcul en cours...</span></p>
     </div>
 
     <div class="quiz-list">
@@ -155,13 +155,30 @@
 
     function updateQuizStats() {
       const quizIds = ['quizz1', 'quizz2', 'quizz3', 'quizz4'];
+      let totalMoyenne = 0;
+      let quizFaits = 0;
+
       quizIds.forEach(id => {
         const stats = getStats(id);
         const el = document.getElementById(`stats_${id}`);
         if (el) {
           el.textContent = `Tentatives : ${stats.tentatives} — Moyenne : ${stats.moyenne.toFixed(2)} / 4`;
         }
+
+        if (stats.tentatives > 0) {
+          totalMoyenne += stats.moyenne;
+          quizFaits++;
+        }
       });
+
+      // Moyenne globale en pourcentage
+      const moyenneGlobale = quizFaits > 0 ? (totalMoyenne / quizFaits) * 25 : 0;
+      document.getElementById('moyenneGlobale').textContent = `${moyenneGlobale.toFixed(0)}%`;
+
+      // Progression
+      const progressionPourcent = (quizFaits / quizIds.length) * 100;
+      document.getElementById('progressFill').style.width = `${progressionPourcent}%`;
+      document.getElementById('progressionText').innerHTML = `<strong>Progression :</strong> ${quizFaits}/${quizIds.length} quiz réalisés`;
     }
 
     window.onload = updateQuizStats;
