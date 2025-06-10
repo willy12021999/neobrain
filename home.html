@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -336,3 +337,343 @@
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accueil - NEOBRAIN</title>
+  <style>
+    :root {
+      --bg-body: #1e1f26;
+      --bg-header: #2c2f38;
+      --bg-sidebar: #2c2f38;
+      --bg-card: #2f3541;
+      --hover-card: #3c4353;
+      --text-light: #f5f5f5;
+      --accent: #7ea9f7;
+      --border: #444;
+      --bubble-border: #facc15;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-light);
+    }
+
+    header {
+      background-color: var(--bg-header);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: var(--accent);
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile img {
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-width: 140px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .dropdown a:hover {
+      background-color: var(--hover-card);
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .logo {
+      height: 65px;
+    }
+
+    .welcome-banner {
+      background-color: var(--bubble-border);
+      color: #1e1f26;
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 30px auto 10px;
+      font-size: 16px;
+      color: #d1d5db;
+    }
+
+    .main {
+      padding: 40px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      padding: 30px;
+      border-radius: 16px;
+      color: var(--text-light);
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s, background-color 0.3s;
+      width: 250px;
+      text-decoration: none;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: var(--hover-card);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 40px 30px 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .bubble {
+      background-color: var(--bg-card);
+      border-left: 5px solid var(--bubble-border);
+      padding: 20px;
+      border-radius: 12px;
+      color: var(--text-light);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .bubble:hover {
+      transform: translateY(-5px);
+    }
+
+    .bubble h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: var(--bubble-border);
+    }
+
+    .bubble p {
+      font-size: 14px;
+      color: #d1d5db;
+    }
+
+    .search-bar {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      padding: 10px 20px;
+      border-radius: 25px;
+      border: none;
+      width: 60%;
+      max-width: 500px;
+      font-size: 16px;
+      background-color: #f5f5f5;
+      color: #000;
+    }
+
+    .personal-space {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .personal-space h2 {
+      color: var(--bubble-border);
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="home.html">Home</a>
+      <a href="presentation.html">Présentation</a>
+      <a href="contacte.html">Contact</a>
+      <a href="https://outlook.office.com/" target="_blank">Messagerie</a>
+      <a href="1dex.html" target="_blank">reservations d'une salle </a>
+    </div>
+    <div class="profile" onclick="toggleDropdown()">
+  <img src="profil.png" alt="Profil">
+  <div class="username" id="username">Admin</div> <!-- Nom ajouté ici -->
+  <div class="dropdown" id="dropdown">
+    <a href="profil.html">Profil</a>
+    <a href="espaceperso.html">Espace personnel</a>
+    <a href="#">Bultin</a>
+    <a href="#" onclick="logout()">Déconnexion</a>
+  </div>
+</div>
+    </div>
+    <div class="title">NEOBRAIN</div>
+    <img src="logo.png" alt="Logo Neobrain" class="logo">
+  </header>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher une matière ou une vidéo...">
+  </div>
+
+  <div class="welcome-banner">
+    Bienvenue sur NeoBrain 🌟
+  </div>
+
+  <div class="intro">
+    <p>
+      Espace dédié aux étudiants et aux professeurs pour accéder facilement aux ressources numériques, à l'enseignement augmenté et aux outils collaboratifs.
+    </p>
+  </div>
+
+  <section class="main">
+    <a href="etudiant.html" class="card" >Espace Étudiant</a>
+    <a href="enseignant.html" class="card" >Espace Enseignant</a>
+  </section>
+
+  <section class="features">
+    <div class="bubble">
+      <h3>Enseignement 4.0</h3>
+      <p>Une pédagogie interactive, numérique et immersive centrée sur l'expérience utilisateur.</p>
+    </div>
+    <div class="bubble">
+      <h3>Quiz en ligne</h3>
+      <p>Évaluez vos connaissances à tout moment avec des questionnaires dynamiques et ludiques.</p>
+    </div>
+    <div class="bubble">
+      <h3>Revisualisation de cours</h3>
+      <p>Visionnez les cours en visio avec sous-titres pour une accessibilité renforcée.</p>
+    </div>
+    <div class="bubble">
+      <h3>TP en VR</h3>
+      <p>Plongez dans la réalité virtuelle pour revivre vos travaux pratiques à 360°.</p>
+    </div>
+    <div class="bubble">
+      <h3>Plateforme collaborative</h3>
+      <p>Collaborez avec vos enseignants et camarades en toute fluidité.</p>
+    </div>
+    <div class="bubble">
+      <h3>Inclusivité</h3>
+      <p>Accessibilité visuelle, audio et textuelle pour tous les profils d’apprenants.</p>
+    </div>
+    <div class="bubble">
+      <h3>Centralisation</h3>
+      <p>Un seul espace pour vos cours, mails, projets, documents et visios.</p>
+    </div>
+  </section>
+
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    window.onclick = function(event) {
+      if (!event.target.matches('.profile img')) {
+        const dropdown = document.getElementById("dropdown");
+        if (dropdown && dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+        }
+      }
+    }
+
+    
+  </script>
+
+  <script>
+  if (!localStorage.getItem("loggedIn")) {
+    window.location.href = "login.html";
+  }
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.profile img')) {
+      const dropdown = document.getElementById("dropdown");
+      if (dropdown && dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+      }
+    }
+  }
+
+  
+  function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "connexion.html";
+}
+</script>
+
+
+</body>
+</html>
+>>>>>>> c5a7ffb5e45718b5b8ec5d422695eb9309e1a388
