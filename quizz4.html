@@ -146,8 +146,8 @@
 
   <script>
     // Récupération ou initialisation des données
-    let tentatives = parseInt(localStorage.getItem("tentatives")) || 0;
-    let historique = JSON.parse(localStorage.getItem("historique")) || [];
+    let tentatives = parseInt(localStorage.getItem("tentatives_quizz4")) || 0;
+    let historique = JSON.parse(localStorage.getItem("historique_quizz4")) || [];
 
     window.onload = function () {
       if (historique.length > 0) afficherHistorique();
@@ -185,8 +185,8 @@
   // Met à jour l'historique
   historique.push(score);
   tentatives++;
-  localStorage.setItem("tentatives", tentatives);
-  localStorage.setItem("historique", JSON.stringify(historique));
+  localStorage.setItem("tentatives_quizz4", tentatives);
+  localStorage.setItem("historique_quizz4", JSON.stringify(historique));
 
   afficherHistorique();
 
@@ -230,8 +230,8 @@
 
     function resetQuiz() {
       if (confirm("Voulez-vous vraiment réinitialiser le quiz et effacer l'historique ?")) {
-        localStorage.removeItem("tentatives");
-        localStorage.removeItem("historique");
+        localStorage.removeItem("tentatives_quizz4");
+        localStorage.removeItem("historique_quizz4");
         location.reload();
       }
     }
