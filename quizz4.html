@@ -4,18 +4,97 @@
   <meta charset="UTF-8" />
   <title>Quiz 4 : Dynamique des systèmes</title>
   <style>
-    body { font-family: sans-serif; background: #1e1f26; color: white; padding: 20px; }
-    .quiz-container { background: #2f3541; padding: 30px; border-radius: 12px; max-width: 700px; margin: auto; }
-    h1 { text-align: center; color: #facc15; }
-    h3 { color: #7ea9f7; }
-    label { display: block; margin: 5px 0; }
-    button { background: #facc15; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
-    .bar-container { background: #444; border-radius: 10px; margin: 20px 0; }
-    .bar { height: 24px; background: #facc15; border-radius: 10px; line-height: 24px; color: black; text-align: center; }
+    body {
+      font-family: sans-serif;
+      background: #1e1f26;
+      color: white;
+      padding: 20px;
+      margin-right: 270px; /* espace pour la sidebar */
+    }
+    .quiz-container {
+      background: #2f3541;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #facc15;
+    }
+    h3 {
+      color: #7ea9f7;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    button {
+      background: #facc15;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    /* Barre latérale droite */
+    #historySidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #222831;
+      padding: 20px;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+      overflow-y: auto;
+      z-index: 1000;
+      transition: width 0.3s ease, padding 0.3s ease;
+    }
+    #historySidebar.collapsed {
+      width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    #historySidebar h3 {
+      color: #facc15;
+      margin-top: 0;
+    }
+    #historySidebar ul {
+      padding-left: 18px;
+      max-height: 70vh;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    #averageScore {
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    /* Bouton pour afficher/masquer la sidebar */
+    #toggleHistoryBtn {
+      position: fixed;
+      top: 10px;
+      right: 260px;
+      background-color: #facc15;
+      color: black;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1001;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+
+  <button id="toggleHistoryBtn" onclick="toggleSidebar()">Historique</button>
+
   <h1>Quiz 4 : Dynamique des systèmes</h1>
+
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
@@ -42,79 +121,182 @@
         <label><input type="radio" name="q4" value="0"> Il n'y a pas de frottement</label>
         <label><input type="radio" name="q4" value="0"> Il est isolé thermiquement</label>
       </div>
-      <div style="text-align:center;"><button type="button" onclick="calculerScore()">Valider mes réponses</button></div>
+
+      <div style="text-align:center; margin-top: 20px;">
+        <button type="button" onclick="calculerScore()">Valider mes réponses</button>
+      </div>
     </form>
 
-    <div class="result" id="resultat"></div>
-    <div class="feedback-section" id="feedback" style="display:none">
+    <div class="result" id="resultat" style="margin-top:20px;"></div>
+
+    <div class="feedback-section" id="feedback" style="display:none; margin-top: 20px;">
       <h2>Votre avis</h2>
       <button onclick="alert('Merci pour votre retour 👍')">👍</button>
       <button onclick="alert('Merci pour votre retour 👎')">👎</button>
     </div>
 
-    <div class="history" id="historySection" style="display:none">
-      <h3>Historique des tentatives</h3>
-      <ul id="historyList"></ul>
-      <p id="averageScore"></p>
-    </div>
+  </div>
+
+  <!-- Barre latérale -->
+  <div id="historySidebar">
+    <h3>Historique</h3>
+    <ul id="historyList"></ul>
+    <p id="averageScore"></p>
   </div>
 
   <script>
-    let tentatives = 0;
-    let historique = [];
+    // Récupération ou initialisation des données
+    let tentatives = parseInt(localStorage.getItem("tentatives")) || 0;
+    let historique = JSON.parse(localStorage.getItem("historique")) || [];
+
+    window.onload = function () {
+      if (historique.length > 0) afficherHistorique();
+    };
 
     function calculerScore() {
-      const form = document.getElementById('quizForm');
-      const data = new FormData(form);
-      let score = 0;
-      for (let [_, value] of data.entries()) {
-        score += parseInt(value);
-      }
+    console.log("hey");
+  const form = document.getElementById('quizForm');
+  const data = new FormData(form);
+  let score = 0;
 
-      const pourcentage = (score / 4) * 100;
-      document.getElementById('resultat').innerHTML = `
-        <h2>Résultat : ${score}/4</h2>
-        <div class="bar-container">
-          <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
-        </div>
-      `;
+  // Vérification que toutes les questions ont une réponse
+  const q1 = data.get('q1');
+  const q2 = data.get('q2');
+  const q3 = data.get('q3');
+  const q4 = data.get('q4');
+  if (!q1 || !q2 || !q3 || !q4) {
+    alert("Veuillez répondre à toutes les questions.");
+    return;
+  }
 
-      historique.push(score);
-      tentatives++;
-      afficherHistorique();
+  for (let value of data.values()) {
+    score += parseInt(value);
+  }
 
-      if (score < 4 && tentatives >= 5) {
-        afficherReponses();
-        afficherChatbot();
-      }
+  const pourcentage = (score / 4) * 100;
 
-      document.getElementById('feedback').style.display = 'block';
-    }
+  document.getElementById('resultat').innerHTML = `
+    <h2>Résultat : ${score}/4</h2>
+    <div class="bar-container">
+      <div class="bar" style="width:${pourcentage}%">${Math.round(pourcentage)}%</div>
+    </div>
+  `;
+
+  // Met à jour l'historique
+  historique.push(score);
+  tentatives++;
+  localStorage.setItem("tentatives", tentatives);
+  localStorage.setItem("historique", JSON.stringify(historique));
+
+  afficherHistorique();
+
+  // Affiche la section feedback
+  document.getElementById('feedback').style.display = 'block';
+
+  // Injection du chatbot si tentatives >= 5, une seule fois
+  if (tentatives >= 5 && !document.getElementById('chatbot-script')) {
+    let script = document.createElement('script');
+    script.id = 'chatbot-script'; // ID pour éviter doublons
+    script.src = "https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1";
+    document.body.appendChild(script);
+  }
+
+  if (tentatives >= 10)
+  {
+    afficherReponsesExplications();
+  }
+}
+
 
     function afficherHistorique() {
-      const section = document.getElementById('historySection');
+        console.log("heyhey");
       const liste = document.getElementById('historyList');
       const moyenne = document.getElementById('averageScore');
       liste.innerHTML = "";
+
       historique.forEach((s, i) => {
         const item = document.createElement('li');
         item.textContent = `Tentative ${i + 1} : ${s}/4`;
         liste.appendChild(item);
       });
-      const moy = historique.reduce((a, b) => a + b, 0) / historique.length;
-      moyenne.innerHTML = `<strong>Moyenne :</strong> ${moy.toFixed(2)}/4`;
-      section.style.display = 'block';
+
+      if (historique.length > 0) {
+        const moy = historique.reduce((a, b) => a + b, 0) / historique.length;
+        moyenne.innerHTML = `<strong>Moyenne :</strong> ${moy.toFixed(2)}/4`;
+      } else {
+        moyenne.innerHTML = "";
+      }
     }
 
-    function afficherReponses() {
-      alert("Voici les bonnes réponses :\n1. Le mouvement des systèmes en fonction des forces\n2. Variables d'état (position et vitesse)\n3. Deuxième loi de Newton (F=ma)\n4. La superposition des effets");
+    function resetQuiz() {
+      if (confirm("Voulez-vous vraiment réinitialiser le quiz et effacer l'historique ?")) {
+        localStorage.removeItem("tentatives");
+        localStorage.removeItem("historique");
+        location.reload();
+      }
     }
 
-    function afficherChatbot() {
-      const script = document.createElement("script");
-      script.src = "https://cdn.jotfor.ms/agent/embedjs/019744196c0c7522b9bf26ddbd747a790b7d/embed.js?skipWelcome=1&maximizable=1";
-      document.body.appendChild(script);
+    function toggleSidebar() {
+      const sidebar = document.getElementById("historySidebar");
+      sidebar.classList.toggle("collapsed");
     }
+    localStorage.setItem("tentatives_quizz4", tentatives);
+    localStorage.setItem("historique_quizz4", JSON.stringify(historique));
+    const reponsesExplications = [
+  {
+    bonneReponse: "La force",
+    explication: "Un dynamomètre mesure la force exercée sur lui."
+  },
+  {
+    bonneReponse: "Le newton (N)",
+    explication: "Le newton est l'unité SI de la force."
+  },
+  {
+    bonneReponse: "Une direction, un sens et une intensité",
+    explication: "Un vecteur force possède ces trois caractéristiques."
+  },
+  {
+    bonneReponse: "L’énergie",
+    explication: "L'énergie est une grandeur scalaire, donc non vectorielle."
+  }
+];
+
+function afficherReponsesExplications() {
+    console.log("heyheyhey");
+  if (tentatives < 10) return; // on affiche que si tentatives >= 10
+
+  const quizContainer = document.querySelector('.quiz-container');
+
+  // Crée une nouvelle div si elle n'existe pas déjà
+  if (!document.getElementById('reponsesExplications')) {
+    const div = document.createElement('div');
+    div.id = 'reponsesExplications';
+    div.style.marginTop = '30px';
+    div.style.background = '#333845';
+    div.style.padding = '20px';
+    div.style.borderRadius = '12px';
+    div.style.color = '#facc15';
+
+    div.innerHTML = '<h2>Réponses et explications</h2>';
+
+    reponsesExplications.forEach((item, index) => {
+      div.innerHTML += `
+        <h3>Question ${index + 1} :</h3>
+        <p><strong>Bonne réponse :</strong> ${item.bonneReponse}</p>
+        <p>${item.explication}</p>
+      `;
+    });
+
+    quizContainer.appendChild(div);
+  }
+}
+
   </script>
+  
+  <div style="text-align:center; margin-top:20px;">
+  <button onclick="resetQuiz()">Réinitialiser le quiz</button><br /><br />
+  <a href="stats.html" style="color:#facc15; font-weight:bold; text-decoration:none;">Voir les statistiques</a>
+</div>
 </body>
 </html>
+
